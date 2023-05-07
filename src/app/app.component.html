@@ -1,0 +1,24 @@
+<p>
+  Default network:
+  <mat-button-toggle-group name="net" aria-label="Font Style" [(ngModel)]="netValue">
+    <mat-button-toggle [value]="true">Mat Tab</mat-button-toggle>
+    <mat-button-toggle [value]="false">Div</mat-button-toggle>
+  </mat-button-toggle-group>
+</p>
+
+<mat-tab-group mat-align-tabs="start" *ngIf="netValue" (selectedTabChange)="tabChange($event)">
+  <mat-tab label="First">Content 1</mat-tab>
+  <mat-tab label="Second">
+    <app-network></app-network>
+  </mat-tab>
+  <mat-tab label="Graph">
+    <ng-template matTabContent>
+      Content 3
+      <app-network-colapse #graph [initialState]="storedState"></app-network-colapse>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
+
+<div *ngIf="!netValue">
+   <app-network-colapse></app-network-colapse>
+</div>
